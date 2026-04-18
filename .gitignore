@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+.cache_jupyter/
+.jupyter_tmp/
+.local_share_jupyter/
+
+.idea/
+.claude/
+.eh-claude-code/
+
+main.html
+main.pdf
+
+data/Survey data collection.xlsx
+data/Survey result_Flash sale.sav

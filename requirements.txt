@@ -1,0 +1,4 @@
+jupyterlab
+openpyxl
+pandas
+pyreadstat
