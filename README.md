@@ -6,7 +6,7 @@ Mục tiêu của notebook là:
 
 - giải thích Cronbach's Alpha theo cách dễ hiểu với người học marketing,
 - dùng ví dụ thật từ bộ dữ liệu thay vì chỉ nói lý thuyết,
-- kiểm tra độ tin cậy của các thang đo như `Urgency`, `Enjoyment`, `Impulse`.
+- kiểm tra **độ nhất quán nội tại** của các thang đo như `Urgency`, `Enjoyment`, `Impulse`.
 
 ## File chính
 
@@ -38,12 +38,14 @@ Notebook hiện gồm các phần chính:
 - ví dụ thật từ dữ liệu cho các thang đo như `Urgency` và `Enjoyment`,
 - ví dụ giả định về trường hợp alpha thấp,
 - ví dụ giả định về **câu hỏi đảo chiều** và vì sao cần đảo mã,
+- ví dụ cực đoan về trường hợp **chỉ có 1 người trả lời** để làm rõ vì sao mẫu quá nhỏ thì alpha không còn nhiều giá trị diễn giải,
 - bảng thuật ngữ để người mới học dễ theo dõi,
 - phần tính Cronbach's Alpha cho từng thang đo trong bộ dữ liệu.
 
 ## Lưu ý dữ liệu
 
 - Kết quả trong notebook được tính trên `267` quan sát trong file `.sav`, không phải toàn bộ phản hồi trong file Excel gốc.
+- Các kết luận trong tutorial nên được hiểu **trên mẫu dữ liệu hiện tại**, không nên xem như nhãn cố định đúng cho mọi mẫu dữ liệu khác.
 - Với các câu hỏi chọn nhiều đáp án, mỗi lựa chọn thường được tách thành một cột riêng theo dạng `1 = Có chọn`, `0 = Không chọn`.
 - Nếu cần hiểu một cột trong `.sav` tương ứng với câu hỏi gốc nào, nên xem `data/SAV_CODEBOOK.md`.
 
