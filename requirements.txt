@@ -1,3 +1,4 @@
+graphviz
 jupyterlab
 openpyxl
 pandas
