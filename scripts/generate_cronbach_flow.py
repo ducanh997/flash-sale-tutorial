@@ -88,7 +88,7 @@ dot.node("alpha_good",
 
 dot.node("alpha_high",
     label=html_label("Alpha rất cao",
-        "> 0.95 có thể gợi ý item trùng lặp hoặc construct quá hẹp"),
+        "> 0.95 có thể gợi ý item trùng lặp hoặc construct quá hẹp,\nnhưng cần kiểm tra nội dung trước khi kết luận"),
     shape="box", style="rounded,filled", fillcolor="#EEF2FF", color="#B7C8E6")
 
 dot.node("review",
@@ -137,8 +137,8 @@ dot.node("rerun",
     shape="box", style="rounded,filled", fillcolor="#FFFFFF", color="#C8D8E7")
 
 dot.node("keep",
-    label=html_label("Giữ thang đo tạm thời",
-        "Chấp nhận được về nội dung và chỉ số ở bước reliability sơ bộ"),
+    label=html_label("Đủ điều kiện sơ bộ",
+        "Đủ điều kiện sơ bộ về nội dung và reliability để đưa vào EFA"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("revise",
@@ -163,7 +163,7 @@ dot.node("post_reliability",
 
 dot.node("cfa",
     label=html_label("CFA: xác nhận mô hình đo lường",
-        "Kiểm định measurement model, convergent/discriminant validity và model fit"),
+        "Kiểm định measurement model, convergent/discriminant validity,\nmodel fit và có thể báo cáo thêm CR/AVE"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("next_step",
@@ -189,6 +189,11 @@ dot.node("threshold_note",
 dot.node("alpha_item_note",
     label=html_label("Lưu ý học thuật",
         "Alpha có thể tăng khi số lượng item tăng,\nkhông chỉ do chất lượng thang đo"),
+    shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
+
+dot.node("sample_note",
+    label=html_label("Lưu ý học thuật",
+        "Alpha thấp cũng có thể liên quan đến data noise,\nchất lượng dữ liệu hoặc đặc điểm mẫu"),
     shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
 
 dot.node("end",
@@ -220,6 +225,7 @@ dot.edge("alpha_pre", "prelim_note", style="dashed")
 dot.edge("alpha_good", "threshold_note", style="dashed")
 dot.edge("alpha_high", "threshold_note", style="dashed")
 dot.edge("alpha_q", "alpha_item_note", style="dashed")
+dot.edge("alpha_low", "sample_note", style="dashed")
 
 dot.edge("review", "content_q")
 dot.edge("content_q", "content_issue", label="có")
