@@ -43,8 +43,13 @@ dot.attr("edge", fontname="Arial", fontsize="11", color="#617C98", penwidth="1.8
 # ===== Nodes =====
 
 dot.node("start",
-    label=html_label("Bắt đầu", "Đánh giá độ nhất quán nội bộ của thang đo"),
+    label=html_label("Bắt đầu", "Chuẩn bị đánh giá độ tin cậy cho các thang đo"),
     shape="box", style="rounded,filled", fillcolor="#FFFFFF", color="#C8D8E7")
+
+dot.node("group",
+    label=html_label("Nhóm item theo construct",
+        "Dựa trên lý thuyết: Urgency, Enjoyment, Impulse Buying,\nTime/Qty/Voucher Scarcity..."),
+    shape="box", style="rounded,filled", fillcolor="#F4F7FB", color="#C8D8E7")
 
 dot.node("reverse_q",
     label=html_label("Câu hỏi 0",
@@ -56,29 +61,34 @@ dot.node("recode",
         "Cần xử lý item đảo chiều trước khi đọc alpha"),
     shape="box", style="rounded,filled", fillcolor="#FFF1EE", color="#DEB0A8")
 
+dot.node("alpha_pre",
+    label=html_label("Cronbach's Alpha sơ bộ",
+        "Chạy riêng cho từng construct như kiểm tra reliability ban đầu"),
+    shape="box", style="rounded,filled", fillcolor="#FFFFFF", color="#C8D8E7")
+
 dot.node("alpha_q",
     label=html_label("Câu hỏi 1",
-        "Cronbach's Alpha đang gợi ý điều gì?"),
+        "Alpha sơ bộ của construct đang gợi ý điều gì?"),
     shape="diamond", style="filled", fillcolor="#FFF4D8", color="#E7C76A")
 
 dot.node("alpha_low",
     label=html_label("Alpha thấp",
-        "alpha < 0.60 thường bị xem là yếu"),
+        "alpha < 0.60 thường gợi ý internal consistency yếu"),
     shape="box", style="rounded,filled", fillcolor="#FDEDED", color="#DBA7A7")
 
 dot.node("alpha_mid",
     label=html_label("Alpha mức cân nhắc",
-        "0.60–0.70 có thể chấp nhận trong nghiên cứu khám phá"),
+        "0.60–0.70 có thể chấp nhận ở giai đoạn khám phá, tùy bối cảnh"),
     shape="box", style="rounded,filled", fillcolor="#FFF9EC", color="#E7C76A")
 
 dot.node("alpha_good",
     label=html_label("Alpha chấp nhận được",
-        "≥ 0.70 thường được xem là acceptable trong marketing"),
+        "0.70–0.95 thường được xem là phù hợp cho nhiều nghiên cứu hành vi"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("alpha_high",
     label=html_label("Alpha rất cao",
-        "> 0.95 có thể gợi ý item trùng lặp"),
+        "> 0.95 có thể gợi ý item trùng lặp hoặc construct quá hẹp"),
     shape="box", style="rounded,filled", fillcolor="#EEF2FF", color="#B7C8E6")
 
 dot.node("review",
@@ -98,7 +108,7 @@ dot.node("content_issue",
 
 dot.node("stats",
     label=html_label("Xem chỉ số",
-        "CITC + Alpha if Item Deleted (chỉ hỗ trợ)"),
+        "CITC + Alpha if Item Deleted (chỉ hỗ trợ, không tự động quyết định)"),
     shape="box", style="rounded,filled", fillcolor="#EEF2FF", color="#B7C8E6")
 
 dot.node("stats_q",
@@ -113,7 +123,7 @@ dot.node("one_item",
 
 dot.node("many_item",
     label=html_label("Nhiều item có vấn đề",
-        "Có thể sai ở cấp độ thang đo"),
+        "Có thể sai ở cấp độ construct hoặc đang có đa chiều"),
     shape="box", style="rounded,filled", fillcolor="#FDEDED", color="#DBA7A7")
 
 dot.node("theory",
@@ -122,13 +132,13 @@ dot.node("theory",
     shape="box", style="rounded,filled", fillcolor="#F4F7FB", color="#C8D8E7")
 
 dot.node("rerun",
-    label=html_label("Loại item & chạy lại",
-        "Chạy lại alpha sau khi loại"),
+    label=html_label("Tinh chỉnh & chạy lại",
+        "Lặp lại theo từng construct đến khi thang đo ổn định"),
     shape="box", style="rounded,filled", fillcolor="#FFFFFF", color="#C8D8E7")
 
 dot.node("keep",
-    label=html_label("Giữ thang đo",
-        "Chấp nhận được về nội dung và chỉ số"),
+    label=html_label("Giữ thang đo tạm thời",
+        "Chấp nhận được về nội dung và chỉ số ở bước reliability sơ bộ"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("revise",
@@ -136,37 +146,54 @@ dot.node("revise",
         "Nếu nhiều vấn đề nghiêm trọng"),
     shape="box", style="rounded,filled", fillcolor="#FDEDED", color="#DBA7A7")
 
+dot.node("efa",
+    label=html_label("Kiểm tra cấu trúc",
+        "Chạy EFA/CFA để kiểm tra dimensionality và factor structure"),
+    shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
+
+dot.node("post_reliability",
+    label=html_label("Đánh giá lại reliability",
+        "Tính lại Alpha/CR cho từng factor được giữ lại"),
+    shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
+
 dot.node("next_step",
     label=html_label("Bước tiếp theo",
-        "Chạy EFA → SEM"),
+        "Measurement model đạt yêu cầu rồi mới sang SEM / kiểm định giả thuyết"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
+
+dot.node("prelim_note",
+    label=html_label("Lưu ý học thuật",
+        "Nếu đặt Alpha trước EFA, phải nói rõ đây là preliminary reliability check"),
+    shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
 
 dot.node("note",
     label=html_label("Lưu ý học thuật",
-        "Cronbach's Alpha ≠ unidimensionality"),
+        "Cronbach's Alpha không kiểm tra unidimensionality;\nalpha cao cũng không tự động chứng minh validity"),
     shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
 
-dot.node("marketing_note",
-    label=html_label("Context Marketing",
-        "Nghiên cứu hành vi tiêu dùng: 0.70–0.90 thường đủ;\n> 0.95 có thể gợi ý item trùng lặp"),
+dot.node("threshold_note",
+    label=html_label("Diễn giải ngưỡng",
+        "Thresholds là context-dependent và nên đọc cùng theory + research stage"),
     shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
 
 dot.node("end",
     label=html_label("Kết thúc",
-        "Chốt thang đo và giải thích rõ quyết định"),
+        "Chốt quyết định cho từng construct và giải thích rõ lập luận"),
     shape="box", style="rounded,filled", fillcolor="#FFFFFF", color="#C8D8E7")
 
 
 # ===== Edges =====
 
-dot.edge("start", "reverse_q")
+dot.edge("start", "group")
+dot.edge("group", "reverse_q")
 dot.edge("reverse_q", "recode", label="chưa")
-dot.edge("reverse_q", "alpha_q", label="đã xử lý")
-dot.edge("recode", "alpha_q")
+dot.edge("reverse_q", "alpha_pre", label="đã xử lý")
+dot.edge("recode", "alpha_pre")
+dot.edge("alpha_pre", "alpha_q")
 
 dot.edge("alpha_q", "alpha_low", label="<0.60")
 dot.edge("alpha_q", "alpha_mid", label="0.60–0.70")
-dot.edge("alpha_q", "alpha_good", label="≥0.70")
+dot.edge("alpha_q", "alpha_good", label="0.70–0.95")
 dot.edge("alpha_q", "alpha_high", label=">0.95")
 
 dot.edge("alpha_low", "review")
@@ -174,7 +201,9 @@ dot.edge("alpha_mid", "review")
 dot.edge("alpha_good", "review")
 dot.edge("alpha_high", "review")
 
-dot.edge("alpha_good", "marketing_note", style="dashed")
+dot.edge("alpha_pre", "prelim_note", style="dashed")
+dot.edge("alpha_good", "threshold_note", style="dashed")
+dot.edge("alpha_high", "threshold_note", style="dashed")
 
 dot.edge("review", "content_q")
 dot.edge("content_q", "content_issue", label="có")
@@ -189,11 +218,13 @@ dot.edge("one_item", "theory")
 dot.edge("theory", "rerun", label="loại")
 dot.edge("theory", "keep", label="giữ")
 
-dot.edge("rerun", "alpha_q")
+dot.edge("rerun", "alpha_pre")
 
 dot.edge("many_item", "revise")
 
-dot.edge("keep", "next_step")
+dot.edge("keep", "efa")
+dot.edge("efa", "post_reliability")
+dot.edge("post_reliability", "next_step")
 dot.edge("next_step", "note")
 dot.edge("note", "end")
 
