@@ -148,7 +148,7 @@ dot.node("note",
 
 dot.node("marketing_note",
     label=html_label("Context Marketing",
-        "Hành vi tiêu dùng biến động → alpha không cần quá cao"),
+        "Nghiên cứu hành vi tiêu dùng: 0.70–0.90 thường đủ;\n> 0.95 có thể gợi ý item trùng lặp"),
     shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
 
 dot.node("end",
@@ -180,7 +180,6 @@ dot.edge("review", "content_q")
 dot.edge("content_q", "content_issue", label="có")
 dot.edge("content_q", "stats", label="không rõ")
 dot.edge("content_issue", "stats")
-
 dot.edge("stats", "stats_q")
 dot.edge("stats_q", "one_item", label="1 item")
 dot.edge("stats_q", "many_item", label="nhiều")
@@ -193,7 +192,6 @@ dot.edge("theory", "keep", label="giữ")
 dot.edge("rerun", "alpha_q")
 
 dot.edge("many_item", "revise")
-dot.edge("content_issue", "revise")
 
 dot.edge("keep", "next_step")
 dot.edge("next_step", "note")
