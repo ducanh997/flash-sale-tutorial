@@ -83,7 +83,7 @@ dot.node("alpha_mid",
 
 dot.node("alpha_good",
     label=html_label("Alpha chấp nhận được",
-        "0.70–0.95 thường được xem là phù hợp cho nhiều nghiên cứu hành vi"),
+        "Có thể chấp nhận sơ bộ;\n0.70 thường đủ cho exploratory, 0.80+ thường thuyết phục hơn cho confirmatory"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("alpha_high",
@@ -147,18 +147,28 @@ dot.node("revise",
     shape="box", style="rounded,filled", fillcolor="#FDEDED", color="#DBA7A7")
 
 dot.node("efa",
-    label=html_label("Kiểm tra cấu trúc",
-        "Chạy EFA/CFA để kiểm tra dimensionality và factor structure"),
+    label=html_label("EFA: khám phá cấu trúc",
+        "Xác định factor structure sơ bộ, xem item tải lên nhân tố nào"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
+dot.node("efa_refine",
+    label=html_label("Hiệu chỉnh sau EFA",
+        "Loại/chuyển item nếu loading kém, cross-loading hoặc lệch cấu trúc"),
+    shape="box", style="rounded,filled", fillcolor="#FFFFFF", color="#C8D8E7")
+
 dot.node("post_reliability",
-    label=html_label("Đánh giá lại reliability",
-        "Tính lại Alpha/CR cho từng factor được giữ lại"),
+    label=html_label("Tính lại reliability",
+        "Chạy lại Alpha cho các thang đo sau khi đã hiệu chỉnh từ EFA"),
+    shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
+
+dot.node("cfa",
+    label=html_label("CFA: xác nhận mô hình đo lường",
+        "Kiểm định measurement model, convergent/discriminant validity và model fit"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("next_step",
     label=html_label("Bước tiếp theo",
-        "Measurement model đạt yêu cầu rồi mới sang SEM / kiểm định giả thuyết"),
+        "Chỉ sang SEM / kiểm định giả thuyết khi CFA cho thấy measurement model đạt yêu cầu"),
     shape="box", style="rounded,filled", fillcolor="#EEF8F1", color="#B8D7BC")
 
 dot.node("prelim_note",
@@ -174,6 +184,11 @@ dot.node("note",
 dot.node("threshold_note",
     label=html_label("Diễn giải ngưỡng",
         "Thresholds là context-dependent và nên đọc cùng theory + research stage"),
+    shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
+
+dot.node("alpha_item_note",
+    label=html_label("Lưu ý học thuật",
+        "Alpha có thể tăng khi số lượng item tăng,\nkhông chỉ do chất lượng thang đo"),
     shape="note", style="filled", fillcolor="#FFFDF5", color="#E7D9A8")
 
 dot.node("end",
@@ -204,6 +219,7 @@ dot.edge("alpha_high", "review")
 dot.edge("alpha_pre", "prelim_note", style="dashed")
 dot.edge("alpha_good", "threshold_note", style="dashed")
 dot.edge("alpha_high", "threshold_note", style="dashed")
+dot.edge("alpha_q", "alpha_item_note", style="dashed")
 
 dot.edge("review", "content_q")
 dot.edge("content_q", "content_issue", label="có")
@@ -223,8 +239,10 @@ dot.edge("rerun", "alpha_pre")
 dot.edge("many_item", "revise")
 
 dot.edge("keep", "efa")
-dot.edge("efa", "post_reliability")
-dot.edge("post_reliability", "next_step")
+dot.edge("efa", "efa_refine")
+dot.edge("efa_refine", "post_reliability")
+dot.edge("post_reliability", "cfa")
+dot.edge("cfa", "next_step")
 dot.edge("next_step", "note")
 dot.edge("note", "end")
 
